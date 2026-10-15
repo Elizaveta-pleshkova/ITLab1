@@ -17,6 +17,7 @@ def add_in_base(a: str, b: str, base: int) -> str:
     if base == 10:
         r_a = int(a_str)
         r_b = int(b_str)
+
     else:
         p_a = 1
         r_a = 0
