@@ -2,9 +2,18 @@ from unicodedata import digit
 
 
 def add_in_base(a: str, b: str, base: int) -> str:
+    valid_chars = list("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"[:base])
+    if base < 2 or base > 36:
+        raise ValueError("Система счисления должна быть в диапазоне между 2 и 36 включительно")
+    kart_ab = (a.strip().upper(), b.strip().upper())
+    for j, num in enumerate(kart_ab, start=1):
+        if num == "":
+            raise ValueError(f"'{j}'-е число пустое")
+        for i in num:
+            if i not in valid_chars:
+                raise ValueError(f"Недопустимый символ '{i}' в '{j}'-м числе для системы счисления '{base}'")
     a_str = a.strip().upper()
     b_str = b.strip().upper()
-    valid_chars = list("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"[:base])
     if base == 10:
         r_a = int(a_str)
         r_b = int(b_str)
